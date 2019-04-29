@@ -1,4 +1,3 @@
-test_array = [10, 4, 5, 7, 8, 2, 7, 8]
 
 module Enumerable
 
@@ -59,5 +58,3 @@ module Enumerable
   end
 
 end
-
-puts test_array.my_inject {|x, num| x + num}

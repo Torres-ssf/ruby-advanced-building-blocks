@@ -1,3 +1,4 @@
+
 def bubble_sort(array)
   finish_sorted = false
   until finish_sorted
@@ -12,6 +13,7 @@ def bubble_sort(array)
 end
 
 def bubble_sort_by(array)
+  return bubble_sort(array) unless(block_given?)
   finish_sorted = false
   until finish_sorted
     finish_sorted = true
