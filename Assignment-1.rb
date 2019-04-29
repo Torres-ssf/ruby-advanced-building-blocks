@@ -1,5 +1,3 @@
-test_array = [8, 5, 8, 2, 9, 34, 1, 7, 987, 32, 1, 6, 99, 10]
-
 def bubble_sort(array)
   finish_sorted = false
   until finish_sorted

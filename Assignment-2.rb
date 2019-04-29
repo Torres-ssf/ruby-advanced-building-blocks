@@ -1,6 +1,3 @@
-test_array = [8, 5, 8, 2, 9, 34, 1, 7, 987, 32, 1, 6, 99, 10]
-test_array2 = [1, 2, 3, 4]
-
 module Enumerable
 
   def my_each
