@@ -1,4 +1,5 @@
 test_array = [8, 5, 8, 2, 9, 34, 1, 7, 987, 32, 1, 6, 99, 10]
+test_array2 = [1, 2, 3, 4]
 
 module Enumerable
 
@@ -15,7 +16,7 @@ module Enumerable
     end
   end
 
-  def my_selection
+  def my_select
     selection_array = []
     self.my_each { |element| selection_array << element if(yield(element)) }
     selection_array
@@ -50,8 +51,8 @@ module Enumerable
     self.my_each { |element| yield(element) }
   end
 
+  def my_inject
+    self.my_each { |x, element| x = yield(x, element)}
+  end
+
 end
-
-
-new_array = ["alto", "magro", "duas", "tres"].map { |num| num.upcase }
-puts new_array
