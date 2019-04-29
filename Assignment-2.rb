@@ -1,3 +1,5 @@
+test_array = [10, 4, 5, 7, 8, 2, 7, 8]
+
 module Enumerable
 
   def my_each
@@ -45,11 +47,17 @@ module Enumerable
   end
 
   def my_map
-    self.my_each { |element| yield(element) }
+    new_array = []
+    self.my_each { |element| new_array << (yield(element)) }
+    new_array
   end
 
   def my_inject
-    self.my_each { |x, element| x = yield(x, element)}
+    new_array, x = [], 0
+    self.my_each { |element| new_array << (x = yield(x, element)) }
+    new_array
   end
 
 end
+
+puts test_array.my_inject {|x, num| x + num}
