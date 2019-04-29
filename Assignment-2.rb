@@ -46,4 +46,12 @@ module Enumerable
     count
   end
 
+  def my_map
+    self.my_each { |element| yield(element) }
+  end
+
 end
+
+
+new_array = ["alto", "magro", "duas", "tres"].map { |num| num.upcase }
+puts new_array
