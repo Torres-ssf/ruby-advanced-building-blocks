@@ -31,4 +31,19 @@ module Enumerable
     false
   end
 
+  def my_none?
+    self.my_each { |element| return false if yield(element) }
+    true
+  end
+
+  def my_count
+    count = 0
+    if(block_given?)
+      self.my_each { |element| count += 1 if(yield(element)) }
+    else
+      self.my_each { |element| count += 1 }
+    end
+    count
+  end
+
 end
