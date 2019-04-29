@@ -21,6 +21,14 @@ module Enumerable
     selection_array
   end
 
-end
+  def my_all?
+    self.my_each { |element| return false unless(yield(element)) }
+    true
+  end
 
-puts test_array.my_selection { |num| num > 8 }
+  def my_any?
+    self.my_each { |element| return true if yield(element) }
+    false
+  end
+
+end
