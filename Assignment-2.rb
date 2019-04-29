@@ -8,6 +8,13 @@ module Enumerable
     end
   end
 
+  def my_each_with_index
+    for i in self
+      yield(i, index)
+      index += 1
+    end
+  end
+
 
 end
 
