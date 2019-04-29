@@ -15,7 +15,12 @@ module Enumerable
     end
   end
 
+  def my_selection
+    selection_array = []
+    self.my_each { |element| selection_array << element if(yield(element)) }
+    selection_array
+  end
 
 end
 
-test_array.my_each { |num| print "#{num} "}
+puts test_array.my_selection { |num| num > 8 }
