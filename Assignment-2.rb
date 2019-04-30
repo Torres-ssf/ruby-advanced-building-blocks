@@ -1,3 +1,4 @@
+array = [5, 6, 7, 8, 9, 10]
 
 module Enumerable
 
@@ -52,9 +53,16 @@ module Enumerable
   end
 
   def my_inject
-    new_array, x = [], 0
-    self.my_each { |element| new_array << (x = yield(x, element)) }
-    new_array
+    x = self[0]
+    self[1..-1].my_each { |element| x = yield(x, element) }
+    x
+  end
+
+  def multiply_els
+    return self.my_inject {|inject, num| inject * num }
   end
 
 end
+
+my_array = array.multiply_els
+puts my_array
