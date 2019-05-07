@@ -2,20 +2,55 @@
 load './Assignment-2.rb'
 
 RSpec.describe Enumerable do
-  describe "#my_any" do
-    it "returns true if the block ever returns a value other than false or nil." do
-      test_array = [1, 4, 8, 9, 11]
-      expect(test_array.my_any? {|i| i > 10 }).to eql(true)
+  describe "#my_any?" do
+    context "verify if at least one element is higher than 10." do
+      it { expect([1, 4, 8, 9, 11].my_any? {|i| i > 10 }).to eql(true) }
     end
 
-    it "returns true if the block ever returns a value other than false or nil." do
-      test_array = [nil,"ruby", true, 'a', 11]
-      expect(test_array.my_any?(Integer)).to eql(true)
+    context "verify if at least one element is an integer." do
+      it { expect([nil,"ruby", true, 'a', 11].my_any?(Integer)).to eql(true) }
     end
 
-    it "returns true if the block ever returns a value other than false or nil." do
-      test_array = [nil, false]
-      expect(test_array.my_any?).to eql(false)
+    context "verify if any element is neither false nor nil" do
+      it { expect([nil, false].my_any?).to eql(false) }
+    end
+  end
+
+  describe "#my_all?" do
+    context "check if every element is higher than 5" do
+      it { expect([1, 4, 8, 9, 11].my_all? {|i| i > 5}).to eql(false) }
+    end
+
+    context "check if every element inside the array is a String" do
+      it { expect(["a", "aa", "aaa"].my_all?(String)).to eql(true) }
+    end
+
+    context "verify if any element never returns nil or false" do
+      it { expect([].my_all?).to eql(true) }
+    end
+
+    context "check if every String has 's' in it's content" do
+      it { expect(["cats", "dogs", "pigs", "birds"].my_all?(/s/)).to eql(true) }
+    end
+  end
+
+  describe "#my_select" do
+    context "returns an array containing elements that satisfy the condition" do
+       it { expect([1, 4, 8, 9, 11].select {|i| i > 10} ).to eql([11]) }
+    end
+  end
+
+  describe "#my_none?" do
+    context "Verify if none of the elements are an integer" do
+      it { expect([2.2, "number", true].my_none?(Integer)).to eql(true) }
+    end
+
+    context "check if none of the elements returns true" do
+      it { expect([nil].my_none?).to eql(true) }
+    end
+
+    context "check if none of the elements returns true" do
+      it { expect([nil, false, true].my_none?).to eql(false) }
     end
   end
 end
