@@ -53,4 +53,20 @@ RSpec.describe Enumerable do
       it { expect([nil, false, true].my_none?).to eql(false) }
     end
   end
+
+  describe "#my_count" do
+    context "return the number of elements in the array" do
+      it { expect([1, 2, 3, 4, 5].my_count).to eql(5) }
+    end
+
+    context "return the number of elements that are higher than 2" do
+      it { expect([1, 2, 3, 4, 5].my_count { |i| i > 2}).to eql(3) }
+    end
+  end
+
+  describe "#my_map" do
+    context "Multiply every single element by 2" do
+      it { expect([2, 4, 6, 8, 10].my_map { |i| i * 2}).to eql([4, 8, 12, 16, 20]) }
+    end
+  end
 end
