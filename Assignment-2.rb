@@ -1,4 +1,3 @@
-array = [5, 6, 7, 8, 9, 10]
 
 module Enumerable
 
@@ -21,18 +20,42 @@ module Enumerable
     selection_array
   end
 
-  def my_all?
-    self.my_each { |element| return false unless(yield(element)) }
+  def my_all?(arg = nil)
+    if block_given?
+      self.my_each { |element| return false unless(yield(element)) }
+    elsif arg.class == Class
+      self.my_each { |element| return false unless element.class == arg }
+    elsif arg.class == Regexp
+      self.my_each { |element| return false if (element =~ arg).nil? }
+    elsif arg.nil?
+      self.my_each { |element| return false unless(element) }
+    end
     true
   end
 
-  def my_any?
-    self.my_each { |element| return true if yield(element) }
+  def my_any?(arg = nil)
+    if block_given?
+      self.my_each { |element| return true if yield(element) }
+    elsif arg.class == Class
+      self.my_each { |element| return true if element.class == arg }
+    elsif arg.class == Regexp
+      self.my_each { |element| return true unless (element =~ arg).nil? }
+    elsif arg.nil?
+      self.my_each { |element| return true if element }
+    end
     false
   end
 
-  def my_none?
-    self.my_each { |element| return false if yield(element) }
+  def my_none?(arg = nil)
+    if block_given?
+      self.my_each { |element| return false if yield(element) }
+    elsif arg.class == Class
+      self.my_each { |element| return false if element.class == arg }
+    elsif arg.class == Regexp
+      self.my_each { |element| return false unless (element =~ arg).nil? }
+    elsif arg.nil?
+      self.my_each { |element| return false if element }
+    end
     true
   end
 
@@ -61,8 +84,4 @@ module Enumerable
   def multiply_els
     return self.my_inject {|inject, num| inject * num }
   end
-
 end
-
-my_array = array.multiply_els
-puts my_array
