@@ -69,4 +69,18 @@ RSpec.describe Enumerable do
       it { expect([2, 4, 6, 8, 10].my_map { |i| i * 2}).to eql([4, 8, 12, 16, 20]) }
     end
   end
+
+  describe "#my_inject" do
+    context "return the multiplication of every single one element." do
+      it { expect([1, 2, 3, 4, 5].my_inject { |i, y| i * y}).to eql(120) }
+    end
+
+    context "return the sum of every single one element." do
+      it { expect([1, 2, 3, 4, 5].my_inject { |i, y| i + y}).to eql(15) }
+    end
+
+    context "return the division of every single one element." do
+      it { expect([10000, 100, 10].my_inject { |i, y| i / y}).to eql(10) }
+    end
+  end
 end
